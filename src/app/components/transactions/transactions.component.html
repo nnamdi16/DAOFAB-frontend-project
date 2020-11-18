@@ -1,6 +1,45 @@
-<mat-table class="lessons-table-elevation-z8" [dataSource]="dataSource">
+<div>
+    <p>transactions works!</p>
+    <div class="example-header">
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+      </div>
+    <mat-table class="lessons-table mat-elevation-z8" [dataSource]="dataSource" matSort>
+    <!-- ID Column -->
     <ng-container matColumnDef="id">
-        <div *matHeaderCellDef>#</div>
-        <div *matCellDef=""></div>
+        <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
     </ng-container>
-</mat-table>
+
+    <!--Sender Column  -->
+    <ng-container matColumnDef="sender">
+        <mat-header-cell *matHeaderCellDef>Sender</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.sender}}</mat-cell>
+    </ng-container>
+
+      <!--Receiver Column  -->
+    <ng-container matColumnDef="receiver">
+        <mat-header-cell *matHeaderCellDef>Receiver</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.receiver}}</mat-cell>
+    </ng-container>
+
+    <!--Total Column  -->
+      <ng-container matColumnDef="totalAmount">
+        <mat-header-cell *matHeaderCellDef>TotalAmount</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.totalAmount}}</mat-cell>
+    </ng-container>
+
+    <!--PaidAmount Column  -->
+    <ng-container matColumnDef="paidAmount">
+        <mat-header-cell *matHeaderCellDef>PaidAmount</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.paidAmount}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    </mat-row>
+      
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[2,4,6,8]"></mat-paginator>
+</div>
