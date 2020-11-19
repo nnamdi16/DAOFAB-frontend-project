@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { TransactionDetails } from './../../models/Transactions';
+import { PaginationDetails, TransactionDetails, Transactions } from './../../models/Transactions';
 import { TransactionsService } from './../../services/transactions.service';
 
 
@@ -12,17 +12,31 @@ import { TransactionsService } from './../../services/transactions.service';
   styleUrls: ['./transactions.component.css']
 })
 export class TransactionsComponent implements OnInit {
-  transactionDetail: TransactionDetails[];
+  loading: boolean = true;
+  paginationDetails: PaginationDetails;
+  pageSize:number=2;
+  transactionDetails:TransactionDetails[];
+  sam:Transactions
   displayedColumns:string[] =["id", "sender", "receiver", "totalAmount", "paidAmount"];
-  dataSource: MatTableDataSource<TransactionDetails>
-  page:string="2"
+  // dataSource:  MatTableDataSource<TransactionDetails>;
+  dataSource = new  MatTableDataSource<any>();
+  page:number=1
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  // @ViewChild(MatPaginator) 
+  // set paginator(value: MatPaginator) {
+  //   this.dataSource.paginator = value;
+  // }
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private transactionsService:TransactionsService) {}
 
   ngOnInit(): void {
-    this.getTransactionDetails(); 
+    this.getTransactionDetails(this.page); 
+    this.paginationDetails = new PaginationDetails();
+    this.sam = new Transactions();
+    console.log(this.sam);
+    console.log(this.paginationDetails);
+
     
   }
 
@@ -31,8 +45,9 @@ export class TransactionsComponent implements OnInit {
    * be able to query its view for the initialized paginator and sort.
    */
   ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator
     // this.dataSource.paginator = this.paginator;
-    // this.dataSource.sort = this.sort;
+    this.dataSource.sort = this.sort;
   }
 
   applyFilter(filterValue: string) {
@@ -41,14 +56,34 @@ export class TransactionsComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
-  getTransactionDetails() {
+  getTransactionDetails(page:number) {
     console.log('We are here');
-    this.transactionsService.fetchTransactionDetails(this.page)
+    this.transactionsService.fetchTransactionDetails(page.toString())
       .subscribe(transactionDetails =>{
-        this.dataSource = new MatTableDataSource(transactionDetails.data);
+        this.paginationDetails = transactionDetails.paginationResponse
+        console.log(transactionDetails.data);
+        this.dataSource = new MatTableDataSource<any>(transactionDetails.data);
+        // this.dataSource = new MatTableDataSource<TransactionDetails>(transactionDetails.data);
+        this.transactionDetails = transactionDetails.data;
+        this.pageSize = transactionDetails.data.length;
+        console.log(this.paginationDetails.totalItems);
         console.log(this.dataSource);
-        this.dataSource.paginator = this.paginator
+        console.log(this.transactionDetails);
+        this.dataSource.paginator = this.paginator;
       })
+  }
+
+  pageChanged(event) {
+    this.loading = true;
+
+    let pageIndex = event.pageIndex;
+    let pageSize = event.pageSize;
+    console.log(pageIndex,pageSize);
+    this.getTransactionDetails(pageIndex+1);
+  }
+
+  onRowClicked(row) {
+    console.log('Row clicked', row)
   }
 
 }
