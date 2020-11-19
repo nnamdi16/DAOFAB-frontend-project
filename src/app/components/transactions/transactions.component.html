@@ -37,9 +37,22 @@
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowClicked(row)" >
     </mat-row>
       
     </mat-table>
-    <mat-paginator [pageSizeOptions]="[2,4,6,8]"></mat-paginator>
+    <mat-paginator
+        showFirstLastButtons
+        (page) = "pageChanged($event)"
+        [length] = "paginationDetails.totalItems"
+        [pageSize]="pageSize"
+        [hidePageSize]="true"
+        ></mat-paginator>
+
+        <div *ngIf="pageChanged">
+            <h5>Page Change Event Properties</h5>
+            <div>List length: {{pageChanged.length}}</div>
+            <!-- <div>Page size: {{pageChanged}}</div>
+            <div>Page index: {{pageEvent.pageIndex}}</div> -->
+          </div>
 </div>
