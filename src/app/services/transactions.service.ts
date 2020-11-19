@@ -1,7 +1,7 @@
-import { Transactions } from './../models/Transactions';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { Observable } from 'rxjs';
+import { Transactions } from './../models/Transactions';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -19,7 +19,6 @@ export class TransactionsService {
 
   fetchTransactionDetails(page:string): Observable<Transactions>{
     let params = new  HttpParams().set('page',page);
-    console.log('We are here')
     const result= this.http.get<Transactions>(this.transactionDetailsUrl,{params});
     console.log(result);
     return result;
