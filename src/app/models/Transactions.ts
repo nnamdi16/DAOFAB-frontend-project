@@ -1,14 +1,33 @@
+export class TransactionDetails {
+    id:number = 0;
+    sender:string = "";
+    receiver:string = "";
+    totalAmount:number = 0;
+    paidAmount:number = 0;
+}
 
-export class Transactions {
-    message:string;
-    data:TransactionDetails[]
+export class PaginationDetails {
+    // constructor(totalItems) {
+    //     this.totalItems = totalItems;
+    // }
+    totalItems: number = 0;
+    currentPage: number = 0;
+    totalPages: number = 0;
+    startPage: number = 0;
+    endPage: number = 0;
+    startIndex: number = 0;
+    endIndex: number = 0;
+    pages:number[]=[];
 }
 
 
-export class TransactionDetails {
-    id:number;
-    sender:string;
-    receiver:string;
-    totalAmount:number;
-    paidAmount:number;
+export class Transactions  {
+    message:string = "";
+    data:TransactionDetails[] = [];
+    paginationResponse:PaginationDetails;
+    constructor() {
+        this.paginationResponse = new PaginationDetails();
+        this.message = this.message;
+        this.data = new Array<TransactionDetails>();
+    }
 }
