@@ -12,12 +12,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TransactionsComponent } from './components/transactions/transactions.component';
+import { ChildTransactionComponent } from './components/child-transaction/child-transaction.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TransactionsComponent
+    TransactionsComponent,
+    ChildTransactionComponent
   ],
   imports: [
     BrowserModule,
