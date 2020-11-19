@@ -6,6 +6,12 @@ export class TransactionDetails {
     paidAmount:number = 0;
 }
 
+export class ChildTransaction {
+    id: number = 0;
+    parentId:number = 0;
+    paidAmount: number = 0;
+}
+
 export class PaginationDetails {
     // constructor(totalItems) {
     //     this.totalItems = totalItems;
@@ -22,12 +28,21 @@ export class PaginationDetails {
 
 
 export class Transactions  {
-    message:string = "";
-    data:TransactionDetails[] = [];
+    message:string;
+    data:Array<TransactionDetails>;
     paginationResponse:PaginationDetails;
-    constructor() {
-        this.paginationResponse = new PaginationDetails();
-        this.message = this.message;
-        this.data = new Array<TransactionDetails>();
+    constructor(message="", paginationResponse = new PaginationDetails(), data=[new TransactionDetails]) {
+        this.paginationResponse = paginationResponse;
+        this.message = message;
+        this.data = data;
+    }
+}
+
+
+export class ChildTransactionDetails {
+    message:string;
+    data: ChildTransaction[] = [];
+    constructor(message="", ) {
+        this.message = message;
     }
 }
