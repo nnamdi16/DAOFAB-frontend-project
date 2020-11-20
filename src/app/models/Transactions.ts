@@ -41,8 +41,9 @@ export class Transactions  {
 
 export class ChildTransactionDetails {
     message:string;
-    data: ChildTransaction[] = [];
-    constructor(message="", ) {
+    data: Array<ChildTransaction>;
+    constructor(message="", data = [new ChildTransaction] ) {
         this.message = message;
+        this.data = data;
     }
 }
