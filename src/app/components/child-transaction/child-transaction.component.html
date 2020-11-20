@@ -1,1 +1,43 @@
-<p>child-transaction works!</p>
+<div>
+  <p>Child Transaction Details</p>
+  <div class="example-header">
+    <mat-form-field>
+      <input
+        matInput
+        (keyup)="applyFilter($event.target.value)"
+        placeholder="Filter"
+      />
+    </mat-form-field>
+  </div>
+  <mat-table
+    class="lessons-table mat-elevation-z8"
+    [dataSource]="dataSource"
+    matSort
+  >
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
+    </ng-container>
+
+    <!--ParentId Column  -->
+    <ng-container matColumnDef="parentId">
+      <mat-header-cell *matHeaderCellDef>ParentId</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.parentId }}</mat-cell>
+    </ng-container>
+
+    <!--PaidAmount Column  -->
+    <ng-container matColumnDef="paidAmount">
+      <mat-header-cell *matHeaderCellDef>PaidAmount</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.paidAmount }}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row
+      *matRowDef="let row; columns: displayedColumns"
+
+    >
+    </mat-row>
+  </mat-table>
+
+</div>
