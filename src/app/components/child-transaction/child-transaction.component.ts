@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute} from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { ChildTransaction, ChildTransactionDetails } from './../../models/Transactions';
 import { TransactionsService } from './../../services/transactions.service';
@@ -17,7 +17,7 @@ export class ChildTransactionComponent implements OnInit {
   displayedColumns:string[] =["id" ,"parentId", "paidAmount"];
   page:string="1"
   
-  constructor(private transactionService: TransactionsService, private router:Router, private route:ActivatedRoute) { }
+  constructor(private transactionService: TransactionsService, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
