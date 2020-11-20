@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Transactions } from './../models/Transactions';
+import { ChildTransactionDetails, Transactions } from './../models/Transactions';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -13,7 +13,8 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class TransactionsService {
-  transactionDetailsUrl:string=`http://localhost:3000/transactionDetails/`
+  transactionDetailsUrl:string=`http://localhost:3000/transactionDetails/`;
+  childTransactionDetailsUrl:string=`http://localhost:3000/childTransactionsByParentId/`;
 
   constructor(private http:HttpClient) { }
 
@@ -23,5 +24,13 @@ export class TransactionsService {
     console.log(result);
     return result;
 
+  }
+
+  fetchChildTransactionDetails(id:string):Observable<ChildTransactionDetails>{
+    console.log('We are here');
+    let params = new HttpParams().set('id',id);
+    const result = this.http.get<ChildTransactionDetails>(this.childTransactionDetailsUrl,{params});
+    console.log(result);
+    return result;
   }
 }
