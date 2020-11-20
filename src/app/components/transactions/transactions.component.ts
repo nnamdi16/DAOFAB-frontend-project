@@ -19,7 +19,7 @@ export class TransactionsComponent implements OnInit {
   sam:Transactions
   displayedColumns:string[] =["id", "sender", "receiver", "totalAmount", "paidAmount"];
   // dataSource:  MatTableDataSource<TransactionDetails>;
-  dataSource = new  MatTableDataSource<any>();
+  dataSource = new  MatTableDataSource<TransactionDetails>();
   page:number=1
   @ViewChild(MatPaginator) paginator: MatPaginator;
   // @ViewChild(MatPaginator) 
@@ -45,7 +45,7 @@ export class TransactionsComponent implements OnInit {
    * be able to query its view for the initialized paginator and sort.
    */
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator
+    // this.dataSource.paginator = this.paginator
     // this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
@@ -61,29 +61,30 @@ export class TransactionsComponent implements OnInit {
     this.transactionsService.fetchTransactionDetails(page.toString())
       .subscribe(transactionDetails =>{
         this.paginationDetails = transactionDetails.paginationResponse
+        console.log(this.paginationDetails.totalItems);
         console.log(transactionDetails.data);
-        this.dataSource = new MatTableDataSource<any>(transactionDetails.data);
+        this.dataSource = new MatTableDataSource<TransactionDetails>(transactionDetails.data);
         // this.dataSource = new MatTableDataSource<TransactionDetails>(transactionDetails.data);
         this.transactionDetails = transactionDetails.data;
         this.pageSize = transactionDetails.data.length;
-        console.log(this.paginationDetails.totalItems);
+        console.log(this.paginationDetails);
         console.log(this.dataSource);
         console.log(this.transactionDetails);
         this.dataSource.paginator = this.paginator;
       })
   }
 
-  pageChanged(event) {
+  pageChanged($event) {
     this.loading = true;
-
-    let pageIndex = event.pageIndex;
-    let pageSize = event.pageSize;
-    console.log(pageIndex,pageSize);
+    console.log($event);
+    const{pageIndex} = $event;
     this.getTransactionDetails(pageIndex+1);
+    // let pageIndex = event.pageIndex;
+    // let pageSize = event.pageSize;
+    // console.log(pageIndex,pageSize);
+    // this.getTransactionDetails(pageIndex+1);
   }
 
-  onRowClicked(row) {
-    console.log('Row clicked', row)
-  }
+
 
 }
