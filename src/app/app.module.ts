@@ -11,8 +11,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TransactionsComponent } from './components/transactions/transactions.component';
 import { ChildTransactionComponent } from './components/child-transaction/child-transaction.component';
+import { TransactionsComponent } from './components/transactions/transactions.component';
 
 
 @NgModule({
@@ -34,7 +34,7 @@ import { ChildTransactionComponent } from './components/child-transaction/child-
     FormsModule,
     MatNativeDateModule,
     ReactiveFormsModule
-    
+
   ],
   providers: [],
   bootstrap: [AppComponent]
