@@ -21,16 +21,13 @@ export class TransactionsService {
   fetchTransactionDetails(page:string): Observable<Transactions>{
     let params = new  HttpParams().set('page',page);
     const result= this.http.get<Transactions>(this.transactionDetailsUrl,{params});
-    console.log(result);
     return result;
 
   }
 
   fetchChildTransactionDetails(id:string):Observable<ChildTransactionDetails>{
-    console.log('We are here');
     let params = new HttpParams().set('id',id);
     const result = this.http.get<ChildTransactionDetails>(this.childTransactionDetailsUrl,{params});
-    console.log(result);
     return result;
   }
 }

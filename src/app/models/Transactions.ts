@@ -13,9 +13,6 @@ export class ChildTransaction {
 }
 
 export class PaginationDetails {
-    // constructor(totalItems) {
-    //     this.totalItems = totalItems;
-    // }
     totalItems: number = 0;
     currentPage: number = 0;
     totalPages: number = 0;
