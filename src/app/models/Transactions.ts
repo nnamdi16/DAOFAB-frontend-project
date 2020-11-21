@@ -10,6 +10,9 @@ export class ChildTransaction {
     id: number = 0;
     parentId:number = 0;
     paidAmount: number = 0;
+    sender:string ="";
+    receiver:string="";
+    totalAmount:number=0
 }
 
 export class PaginationDetails {
@@ -39,7 +42,8 @@ export class Transactions  {
 export class ChildTransactionDetails {
     message:string;
     data: Array<ChildTransaction>;
-    constructor(message="", data = [new ChildTransaction] ) {
+
+    constructor(message="", data = [new ChildTransaction], sender="", receiver="" ) {
         this.message = message;
         this.data = data;
     }
