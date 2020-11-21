@@ -11,6 +11,7 @@ import { TransactionsService } from './../../services/transactions.service';
   styleUrls: ['./transactions.component.css']
 })
 export class TransactionsComponent implements OnInit {
+  isLoading:boolean= true;
   pages:string[]=[];
   currentPage:number;
   totalPages:number;
@@ -57,9 +58,12 @@ export class TransactionsComponent implements OnInit {
   getTransactionDetails(page:string) {
     this.transactionsService.fetchTransactionDetails(page)
       .subscribe(transactionDetails =>{
-        this.dataSource = new MatTableDataSource<TransactionDetails>(transactionDetails.data);
-        this.pagination(transactionDetails.paginationResponse);
-      })
+        if (transactionDetails) {
+          this.dataSource = new MatTableDataSource<TransactionDetails>(transactionDetails.data);
+          this.pagination(transactionDetails.paginationResponse);
+        }
+        this.isLoading = false; 
+      });
   }
 
   pageChanged($event) {
@@ -84,12 +88,5 @@ export class TransactionsComponent implements OnInit {
     return this.getTransactionDetails(this.currentPage.toString())
 
   }
-
-
-
-
-
-
-
 
 }
