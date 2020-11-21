@@ -1,5 +1,5 @@
-<div>
-  <p>Child Transaction Details</p>
+<div class="container">
+  <h1>Child Transaction Details</h1>
   <div class="example-header">
     <mat-form-field>
       <input
@@ -20,10 +20,22 @@
       <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
     </ng-container>
 
-    <!--ParentId Column  -->
-    <ng-container matColumnDef="parentId">
-      <mat-header-cell *matHeaderCellDef>ParentId</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.parentId }}</mat-cell>
+    <!--Sender Column  -->
+    <ng-container matColumnDef="sender">
+      <mat-header-cell *matHeaderCellDef>Sender</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.sender }}</mat-cell>
+    </ng-container>
+
+     <!--Receiver Column  -->
+    <ng-container matColumnDef="receiver">
+      <mat-header-cell *matHeaderCellDef>Receiver</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.receiver }}</mat-cell>
+    </ng-container>
+
+    <!--TotalAmount Column  -->
+    <ng-container matColumnDef="totalAmount">
+      <mat-header-cell *matHeaderCellDef>TotalAmount</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.totalAmount }}</mat-cell>
     </ng-container>
 
     <!--PaidAmount Column  -->
