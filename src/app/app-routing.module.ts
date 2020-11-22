@@ -4,8 +4,8 @@ import { ChildTransactionComponent } from './components/child-transaction/child-
 import { TransactionsComponent } from './components/transactions/transactions.component';
 
 const routes: Routes = [
-  {path:'', redirectTo:'/home',pathMatch:'full'},
-  {path:'home', component:TransactionsComponent},
+  {path:'', redirectTo:'/transactions/1', pathMatch:'full'},
+  {path:'transactions/:id', component:TransactionsComponent},
   {path:'child-transaction/:id', component:ChildTransactionComponent}
 
 ];
