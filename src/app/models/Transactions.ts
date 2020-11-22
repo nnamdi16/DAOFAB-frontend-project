@@ -43,7 +43,7 @@ export class ChildTransactionDetails {
     message:string;
     data: Array<ChildTransaction>;
 
-    constructor(message="", data = [new ChildTransaction], sender="", receiver="" ) {
+    constructor(message="", data = [new ChildTransaction]) {
         this.message = message;
         this.data = data;
     }

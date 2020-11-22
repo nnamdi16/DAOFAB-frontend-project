@@ -72,7 +72,6 @@ export class TransactionsComponent implements OnInit {
   }
 
   pageChanged($event) {
-    this.loading = true;
     return this.getTransactionDetails($event);
   }
 
