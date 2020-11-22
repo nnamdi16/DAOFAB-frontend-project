@@ -47,9 +47,9 @@
     <br><br>
        <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
-          <li class="page-item"><a class="page-link text-body" (click) = previousPagination()>Previous</a></li>
-          <li *ngFor="let page of pages" [value]="page" class="page-item"><a class="page-link text-body" (click)="pageChanged(page)">{{page}}</a></li>
-          <li class="page-item"><a class="page-link text-body" (click) = "nextPagination()">Next</a></li>
+          <li class="page-item"><a [routerLink] = "['/transactions',previousPage]" class="page-link text-body" (click) = "previousPagination()">Previous</a></li>
+          <li *ngFor="let page of pages" [value]="page" class="page-item"><a [routerLink] = "['/transactions',page]" class="page-link text-body" (click)="pageChanged(page)">{{page}}</a></li>
+          <li class="page-item"><a [routerLink] = "['/transactions',nextPage]"  class="page-link text-body" (click) = "nextPagination()">Next</a></li>
         </ul>
       </nav>
 </div>
