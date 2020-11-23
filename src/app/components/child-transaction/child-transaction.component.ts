@@ -32,12 +32,20 @@ export class ChildTransactionComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
+  /**
+   * applyFilter method is used for filter transactions to be displayed.
+   * @param filterValue 'This the value used for fltering'
+   */
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
-  
+
+  /**
+   * fetchChildTransactionDetails:fetches childTransaction details from the db.
+   * @param id 
+   */
   fetchChildTransactionDetails(id:string) {
     this.transactionService.fetchChildTransactionDetails(id).subscribe(childTransactionDetails => {
       const{data} = childTransactionDetails;

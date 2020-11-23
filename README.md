@@ -3,9 +3,10 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.4.
 
 ## Development server
- git clone https://github.com/nnamdi16/DAOFAB-frontend-project.git
+ * git clone https://github.com/nnamdi16/DAOFAB-frontend-project.git
  
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+*  Run `npm install` to install all dependencies
+*  Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
@@ -26,3 +27,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## NOTE
+
+In order to view the feched data when you run the backend code for further instruction, check out the backend repository  [https://github.com/nnamdi16/DAOFAB-backend-project](https://github.com/nnamdi16/DAOFAB-backend-project)
